@@ -1,0 +1,31 @@
+# Compiled binaries
+/executive-report-agent
+*.exe
+*.test
+*.out
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# KPI material stays private: never commit real financial extracts
+/testdata/private/
+*.xlsx
+*.csv
+
+# Generated reports
+/reports/
+*.report.json
+
+# Go tooling
+/.tmp/
+/go.work
+/go.work.sum
+/.gomodcache/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
