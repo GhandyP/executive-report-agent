@@ -53,8 +53,8 @@ S12 — README "Missing elements" → Fixtures and validation (verbatim): "Inclu
 | ID | Task | Specs | Route | Status / evidence |
 | --- | --- | --- | --- | --- |
 | T1 | Bootstrap: isolated repo, MIT LICENSE, .gitignore, `go.mod` + ADK Go v2 dependency, CI workflow | S1, S2, A7 | inline | done — `21c7a89` |
-| T2 | Input contract + validation with RED tests (`internal/kpi`) | A1, A3 | inline | done — RED `no non-test Go files in internal/kpi` (exit 1), GREEN 16 tests |
-| T3 | Deterministic facts: deltas, percentage change, zero base, missing period, restatement, mixed units (`internal/kpi/facts.go`) | A3, A4 | inline | pending |
+| T2 | Input contract + validation with RED tests (`internal/kpi`) | A1, A3 | inline | done — RED `no non-test Go files in internal/kpi` (exit 1), GREEN 16 tests, `1b2255b` |
+| T3 | Deterministic facts: deltas, percentage change, zero base, missing period, restatement, mixed units (`internal/kpi/facts.go`) | A3, A4 | inline | done — RED undefined `Fact`/`ComputeFacts`/`CanonicalNumber`/`NumberIndex`, GREEN 27 tests |
 | T4 | ADK agent + prompt + number-membership fidelity validation (`internal/report`) | A2, A6, S11, S12 | inline | pending |
 | T5 | CLI (`main.go`), fixtures (`testdata/`), README rewrite | A5, A7, S3, S10 | inline | pending |
 | T6 | Independent verification of the candidate | A1-A7 | verifier (assess decides tier) | pending |
@@ -81,3 +81,5 @@ L8 — ENVIRONMENT INCIDENT (2026-10-13): `/tmp` is a 3.9 GB tmpfs at 100% (≈3
 L9 — evidence (T1): `21c7a89` on `feature/executive-report-agent`. `go mod init` plus `go get google.golang.org/adk/v2@v2.6.0` and `genai@v1.74.0` resolved from `proxy.golang.org`; `go.mod` carries `go 1.26.6` and the local toolchain directive switched to the cached go1.26.6. `gofmt -l .` prints nothing; `go build ./...`, `go vet ./...` and `go test ./... -count=1` all exit 0.
 
 L10 — evidence (T2): RED observed as `github.com/GhandyP/executive-report-agent/internal/kpi: no non-test Go files` with exit 1. First GREEN run exposed a wrong expectation in my own test, not in the rule: two input-level subtests asserted that the message names `metric[0]`, which only row-level errors do. The test was corrected (input errors name the input, row errors name the row) without weakening any rule, and `go test ./internal/kpi/ -count=1` then passed with 16 tests. Commit id is recorded in the T3 entry.
+
+L11 — evidence (T3): commit `1b2255b` holds T2. T3 RED observed as `undefined: kpi.Fact`, `undefined: kpi.ComputeFacts`, `undefined: kpi.CanonicalNumber`, `undefined: kpi.NumberIndex`; GREEN as `ok github.com/GhandyP/executive-report-agent/internal/kpi` with 27 tests in the package. Redesign recorded while implementing: the fact set of a metric is *its own* periods plus the reporting period, not the union of every period in the document. The first implementation consumed a document-wide period universe, which would have produced a spurious "missing" fact for every metric in every period some other metric happened to supply; the implementation and its two tests now agree that only the reporting period is forced, and only the metric's own history is walked for the base of a change. `gofmt -l .` prints nothing and `go vet ./...` exits 0.
