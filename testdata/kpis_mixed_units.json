@@ -1,0 +1,7 @@
+{
+  "period": "2026-Q3",
+  "metrics": [
+    {"id": "revenue", "period": "2026-Q2", "value": 100, "unit": "USD", "source": "finance/2026-monthly.csv"},
+    {"id": "revenue", "period": "2026-Q3", "value": 90, "unit": "EUR", "source": "finance/2026-monthly.csv"}
+  ]
+}
