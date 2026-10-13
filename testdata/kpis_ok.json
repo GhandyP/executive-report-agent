@@ -1,0 +1,13 @@
+{
+  "period": "2026-Q3",
+  "metrics": [
+    {"id": "revenue", "period": "2026-Q1", "value": 980000, "unit": "USD", "source": "finance/2026-monthly.csv"},
+    {"id": "revenue", "period": "2026-Q2", "value": 1050000, "unit": "USD", "source": "finance/2026-monthly.csv"},
+    {"id": "revenue", "period": "2026-Q3", "value": 1120000, "unit": "USD", "source": "finance/2026-monthly.csv"},
+    {"id": "gross_margin", "period": "2026-Q2", "value": 0.42, "unit": "ratio", "source": "finance/2026-monthly.csv"},
+    {"id": "gross_margin", "period": "2026-Q3", "value": 0.39, "unit": "ratio", "source": "finance/2026-monthly.csv"},
+    {"id": "orders", "period": "2026-Q2", "value": 4120, "unit": "count", "source": "ops/orders.csv"},
+    {"id": "orders", "period": "2026-Q3", "value": 3980, "unit": "count", "source": "ops/orders.csv"},
+    {"id": "churn", "period": "2026-Q3", "value": null, "unit": "count", "source": "ops/support.csv"}
+  ]
+}

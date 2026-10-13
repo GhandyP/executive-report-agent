@@ -1,0 +1,9 @@
+{
+  "period": "2026-Q3",
+  "metrics": [
+    {"id": "signups", "period": "2026-Q2", "value": 0, "unit": "count", "source": "growth/weekly.csv"},
+    {"id": "signups", "period": "2026-Q3", "value": 50, "unit": "count", "source": "growth/weekly.csv"},
+    {"id": "pipeline", "period": "2026-Q1", "value": 12, "unit": "count", "source": "sales/crm.csv"},
+    {"id": "pipeline", "period": "2026-Q2", "value": 18, "unit": "count", "source": "sales/crm.csv"}
+  ]
+}
